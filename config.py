@@ -10,21 +10,21 @@ try:
 except ImportError:
     USE_STREAMLIT_SECRETS = False
 
-# Konfigurasi database PostgreSQL
-if USE_STREAMLIT_SECRETS and hasattr(st, 'secrets') and 'postgres' in st.secrets:
+# Konfigurasi database PostgreSQL (Supabase)
+if USE_STREAMLIT_SECRETS and hasattr(st, 'secrets') and 'supabase' in st.secrets:
     # Use Streamlit secrets (for deployment)
-    DB_HOST = st.secrets["postgres"]["host"]
-    DB_PORT = st.secrets["postgres"]["port"]
-    DB_NAME = st.secrets["postgres"]["database"]
-    DB_USER = st.secrets["postgres"]["user"]
-    DB_PASSWORD = st.secrets["postgres"]["password"]
+    DB_HOST = st.secrets["supabase"]["host"]
+    DB_PORT = st.secrets["supabase"]["port"]
+    DB_NAME = st.secrets["supabase"]["database"]
+    DB_USER = st.secrets["supabase"]["user"]
+    DB_PASSWORD = st.secrets["supabase"]["password"]
 else:
-    # Use environment variables or defaults (for local development)
-    DB_HOST = os.getenv("DB_HOST", "localhost")
-    DB_PORT = os.getenv("DB_PORT", "5432")
-    DB_NAME = os.getenv("DB_NAME", "visualisasi_abd")
-    DB_USER = os.getenv("DB_USER", "postgres")
-    DB_PASSWORD = os.getenv("DB_PASSWORD", "12112004")
+    # Use environment variables or Supabase defaults (for local development)
+    DB_HOST = os.getenv("DB_HOST", "aws-1-ap-south-1.pooler.supabase.com")
+    DB_PORT = os.getenv("DB_PORT", "6543")
+    DB_NAME = os.getenv("DB_NAME", "postgres")
+    DB_USER = os.getenv("DB_USER", "postgres.wtgzrwvxvhoxfeupgmdb")
+    DB_PASSWORD = os.getenv("DB_PASSWORD", "AA@12112004@AA")
 
 print(f"[DEBUG] DB Config: {DB_HOST}:{DB_PORT}/{DB_NAME} (User: {DB_USER})", file=sys.stderr)
 
